@@ -5,8 +5,8 @@ import cv2
 import os
 #'faceset_token': '5309ce72084fe8430a6ca31b4a700bc4'
 #'face_token': '8b7fa9baf07b6bb1b4e7a22aec64e22d'
-key ="Lw7WQXJMIfpF--CE05dnko3nhWzjpe9c"
-secret ="a0Aw1jXqhwYWnnR_e_O23GD0-R87E4En"
+key ="Lw7123456798"#自己的key
+secret ="a0Agfhgf123456789"#自己的secret
 def jiance():#摄像头实时分析
     http_url ="https://api-cn.faceplusplus.com/facepp/v3/detect"
     filepath1 ="E:/opencv_pictures/face++/image/my_face.jpg"
