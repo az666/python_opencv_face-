@@ -6,8 +6,8 @@ import json
 import os
 #'faceset_token': '5309ce72084fe8430a6ca31b4a700bc4'
 #'face_token': '8b7fa9baf07b6bb1b4e7a22aec64e22d'
-key ="Lw7WQXJMIfpF--CE05dnko3nhWzjpe9c"
-secret ="a0Aw1jXqhwYWnnR_e_O23GD0-R87E4En"
+key ="Lw7WQXJMIfpF"#不能使用
+secret ="a0Aw1jXqhwYWn"#不能使用，请注册自己的秘钥
 def jiance():#摄像头实时分析 # 少用，这个浪费次数。
     http_url ="https://api-cn.faceplusplus.com/facepp/v3/detect"
     filepath1 ="E:/opencv_pictures/face++/image/my_face.jpg"#待对比的图像，系统存储的图像
