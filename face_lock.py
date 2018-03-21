@@ -2,14 +2,15 @@ import requests
 from json import JSONDecoder
 import datetime
 import cv2
+import json
 import os
 #'faceset_token': '5309ce72084fe8430a6ca31b4a700bc4'
 #'face_token': '8b7fa9baf07b6bb1b4e7a22aec64e22d'
-key ="Lw7123456798"#自己的key
-secret ="a0Agfhgf123456789"#自己的secret
-def jiance():#摄像头实时分析
+key ="Lw7WQXJMIfpF--CE05dnko3nhWzjpe9c"
+secret ="a0Aw1jXqhwYWnnR_e_O23GD0-R87E4En"
+def jiance():#摄像头实时分析 # 少用，这个浪费次数。
     http_url ="https://api-cn.faceplusplus.com/facepp/v3/detect"
-    filepath1 ="E:/opencv_pictures/face++/image/my_face.jpg"
+    filepath1 ="E:/opencv_pictures/face++/image/my_face.jpg"#待对比的图像，系统存储的图像
     # 需要发送的数据
     data = {"api_key":key, "api_secret": secret,"return_attributes":"age,emotion", }  # 多个返回值用“,”隔开
     files = {"image_file": open(filepath1, "rb")}
@@ -70,6 +71,8 @@ def FaceSet_AddFace(): #添加人脸到库中
     response = requests.post(url, data=data)
     test = response.json()
     print(test)
+    # 成功输出：（有可能会失败报错这是系统的问题，因为我用的是免费的接口）
+    #{'faceset_token': '5309ce72084fe8430a6ca31b4a700bc4', 'time_used': 561, 'face_count': 1, 'face_added': 1, 'request_id': '1521540919,adfab929-9d6b-4541-891f-b1eaa6026d3c', 'outer_id': '', 'failure_detail': []}
 def camera_compare():#摄像头实时比对
     url = "https://api-cn.faceplusplus.com/facepp/v3/compare"
     filepath1 = "E:/opencv_pictures/face++/image/my_face.jpg"
@@ -89,7 +92,18 @@ def camera_compare():#摄像头实时比对
         # post上传
         response = requests.post(url, data=data, files=files)
         # 返回比较结果
-        print(response.json())
+        fanhuizhi = response.json()
+        #print(fanhuizhi)
+        #print(type(fanhuizhi))# 查看返回的数据为字典型
+        if "confidence" in fanhuizhi:
+            scroe = fanhuizhi["confidence"]
+            print("人脸识别分数：",scroe)
+            if scroe >75 :
+                print("人脸校验通过，主人你好！")
+            else:
+                print("你室友也这么帅的吗？")
+        else:
+            print("gogogo")
         cv2.waitKey(10)
 #FaceSet_Create()
 #shangchuan()
